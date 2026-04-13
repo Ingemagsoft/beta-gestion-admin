@@ -50,7 +50,7 @@ body {
   transform: translate(-50%, -50%);
   pointer-events: none;
 }
-.logo-wrap { width: 110px; height: 110px; position: relative; z-index: 1; }
+.logo-wrap { width: 100%; height: 100px; object-fit: contain; }
 .logo-wrap svg { width: 100%; height: 100%; }
 .brand-text { text-align: center; z-index: 1; }
 .brand-product {
@@ -85,7 +85,7 @@ body {
   display: flex; flex-direction: column;
   justify-content: center; padding: 52px 48px; position: relative;
 }
-.right-panel::before {
+/*.right-panel::before {
   content: '';
   position: absolute; inset: 0;
   background-image:
@@ -93,7 +93,7 @@ body {
     linear-gradient(90deg, rgba(0,0,0,0.022) 1px, transparent 1px);
   background-size: 28px 28px;
   pointer-events: none;
-}
+}*/
 .form-inner { position: relative; z-index: 1; }
 .welcome-label {
   font-size: 10px; color: #E8960C;

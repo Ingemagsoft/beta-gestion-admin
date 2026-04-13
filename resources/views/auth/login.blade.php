@@ -13,6 +13,7 @@
   {{-- LEFT PANEL --}}
   <div class="left-panel">
     <div class="logo-wrap">
+<!--<img src="{{ asset('img/logo_ims_color.png') }}" alt="IMS Global" />-->
       <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
         <circle cx="100" cy="100" r="94" fill="none" stroke="#E8960C" stroke-width="5.5"/>
         <circle cx="100" cy="100" r="86" fill="#0E0E0E"/>
@@ -29,7 +30,7 @@
     </div>
 
     <div class="brand-text">
-      <div class="brand-product">CLiCK <span>Pyme</span></div>
+      <div class="brand-product">CLICK <span>Pyme</span></div>
       <div class="brand-sub">Sistema de Gestión Administrativa<br>Ventas · Clientes · Inventario · DIAN</div>
     </div>
 
