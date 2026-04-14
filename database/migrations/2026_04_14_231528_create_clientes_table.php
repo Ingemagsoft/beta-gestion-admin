@@ -37,8 +37,9 @@ return new class extends Migration
             // ─── Dirección ─────────────────────────────────────────
             $table->string('direccion', 250);
             $table->foreignId('ciudad_id')
+                  ->nullable()  // Permitir clientes sin ciudad asignada
                   ->constrained('ciudades')
-                  ->restrictOnDelete();
+                  ->nullOnDelete(); // Si la ciudad se borra, dejar el campo en null
 
             // ─── Control ───────────────────────────────────────────
             $table->boolean('activo')->default(true);
