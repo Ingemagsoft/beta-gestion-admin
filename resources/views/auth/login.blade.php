@@ -13,8 +13,8 @@
   {{-- LEFT PANEL --}}
   <div class="left-panel">
     <div class="logo-wrap">
-<!--<img src="{{ asset('img/logo_ims_color.png') }}" alt="IMS Global" />-->
-      <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <img src="{{ asset('img/logo_ims_blanco.png') }}" alt="CLICK Pyme" />
+      <!--<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
         <circle cx="100" cy="100" r="94" fill="none" stroke="#E8960C" stroke-width="5.5"/>
         <circle cx="100" cy="100" r="86" fill="#0E0E0E"/>
         <circle cx="100" cy="44" r="11" fill="#E8960C"/>
@@ -26,7 +26,7 @@
         <text x="100" y="150" text-anchor="middle"
           font-family="'DM Sans', sans-serif" font-size="17" font-weight="300"
           fill="#777777" letter-spacing="4">global</text>
-      </svg>
+      </svg>-->
     </div>
 
     <div class="brand-text">
