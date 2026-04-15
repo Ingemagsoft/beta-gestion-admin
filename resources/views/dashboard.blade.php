@@ -60,7 +60,7 @@
     <div class="modules-title">MÓDULOS DEL SISTEMA</div>
     <div class="modules-grid">
 
-      <a href="#" class="module-card">
+      <a href="{{ route('clientes.index') }}" class="module-card">
         <div class="module-icon">👥</div>
         <div class="module-name">Clientes</div>
         <div class="module-desc">Gestión de clientes</div>
