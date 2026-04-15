@@ -43,7 +43,7 @@ body {
   display: flex; align-items: center;
   justify-content: space-between; margin-bottom: 24px;
 }
-.page-header-left {}
+/* .page-header-left - reserved for future use */
 .page-title {
   font-family: 'Sora', sans-serif;
   font-size: 20px; font-weight: 600; color: #111111; margin-bottom: 2px;

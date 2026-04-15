@@ -20,7 +20,10 @@ return new class extends Migration
 
             // ─── Datos persona jurídica ────────────────────────────
             $table->string('razon_social', 200)->nullable();
-            $table->string('rep_legal_nombre', 200)->nullable();
+            $table->string('rep_legal_primer_nombre', 100)->nullable();
+            $table->string('rep_legal_segundo_nombre', 100)->nullable();
+            $table->string('rep_legal_primer_apellido', 100)->nullable();
+            $table->string('rep_legal_segundo_apellido', 100)->nullable();
             $table->string('rep_legal_documento', 50)->nullable();
 
             // ─── Datos persona natural ─────────────────────────────
