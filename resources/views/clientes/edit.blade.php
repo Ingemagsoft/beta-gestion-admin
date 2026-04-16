@@ -190,24 +190,6 @@
           <div id="bloque-natural">
             <div class="form-grid form-grid-2" style="margin-bottom:16px;">
               <div class="field field-required">
-                <label>PRIMER APELLIDO</label>
-                <input type="text" name="primer_apellido"
-                  value="{{ old('primer_apellido', $cliente->primer_apellido) }}"
-                  placeholder="Primer apellido"
-                  class="{{ $errors->has('primer_apellido') ? 'is-error' : '' }}"/>
-                @error('primer_apellido')
-                  <span class="error-msg">{{ $message }}</span>
-                @enderror
-              </div>
-              <div class="field">
-                <label>SEGUNDO APELLIDO</label>
-                <input type="text" name="segundo_apellido"
-                  value="{{ old('segundo_apellido', $cliente->segundo_apellido) }}"
-                  placeholder="Segundo apellido"/>
-              </div>
-            </div>
-            <div class="form-grid form-grid-2" style="margin-bottom:16px;">
-              <div class="field field-required">
                 <label>PRIMER NOMBRE</label>
                 <input type="text" name="primer_nombre"
                   value="{{ old('primer_nombre', $cliente->primer_nombre) }}"
@@ -222,6 +204,24 @@
                 <input type="text" name="segundo_nombre"
                   value="{{ old('segundo_nombre', $cliente->segundo_nombre) }}"
                   placeholder="Segundo nombre"/>
+              </div>
+            </div>
+            <div class="form-grid form-grid-2" style="margin-bottom:16px;">
+              <div class="field field-required">
+                <label>PRIMER APELLIDO</label>
+                <input type="text" name="primer_apellido"
+                  value="{{ old('primer_apellido', $cliente->primer_apellido) }}"
+                  placeholder="Primer apellido"
+                  class="{{ $errors->has('primer_apellido') ? 'is-error' : '' }}"/>
+                @error('primer_apellido')
+                  <span class="error-msg">{{ $message }}</span>
+                @enderror
+              </div>
+              <div class="field">
+                <label>SEGUNDO APELLIDO</label>
+                <input type="text" name="segundo_apellido"
+                  value="{{ old('segundo_apellido', $cliente->segundo_apellido) }}"
+                  placeholder="Segundo apellido"/>
               </div>
             </div>
           </div>
