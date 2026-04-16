@@ -123,17 +123,25 @@ class ClienteController extends Controller
     }
 
     // ─── Formulario editar cliente ───────────────────────────────
-    public function edit(Cliente $cliente)
+    public function edit($id)
     {
-        $ciudades     = Ciudad::where('activo', true)->orderBy('nombre')->get();
+        $cliente = Cliente::where('id', $id)
+                          ->where('activo', true)
+                          ->firstOrFail();
+
+        $ciudades      = Ciudad::where('activo', true)->orderBy('nombre')->get();
         $ciudadDefault = Ciudad::where('nombre', 'Pereira')->first();
 
         return view('clientes.edit', compact('cliente', 'ciudades', 'ciudadDefault'));
     }
 
     // ─── Actualizar cliente ──────────────────────────────────────
-    public function update(Request $request, Cliente $cliente)
+    public function update(Request $request, $id)
     {
+        $cliente = Cliente::where('id', $id)
+                          ->where('activo', true)
+                          ->firstOrFail();
+
         $esNit = $request->filled('digito_verificacion');
 
         $rules = [
@@ -170,27 +178,26 @@ class ClienteController extends Controller
         $tipoDoc = $esNit ? 'NIT' : ($request->tipo_documento ?? 'CC');
 
         $cliente->update([
-            'codigo'                   => strtoupper($request->codigo),
-            'tipo_cliente'             => $request->tipo_cliente ?? 'Cliente',
-            'tipo_documento'           => $request->tipo_documento,
-            'numero_documento'         => $request->numero_documento,
-            'digito_verificacion'      => $request->digito_verificacion ?: null,
-            'razon_social'             => $esNit ? $request->razon_social              : null,
-            'rep_legal_primer_nombre'  => $esNit ? $request->rep_legal_primer_nombre   : null,
-            'rep_legal_segundo_nombre' => $esNit ? $request->rep_legal_segundo_nombre  : null,
-            'rep_legal_primer_apellido'=> $esNit ? $request->rep_legal_primer_apellido : null,
-            'rep_legal_segundo_apellido'=> $esNit ? $request->rep_legal_segundo_apellido: null,
-            'rep_legal_documento'      => $esNit ? $request->rep_legal_documento        : null,
-            'primer_apellido'          => !$esNit ? $request->primer_apellido  : null,
-            'segundo_apellido'         => !$esNit ? $request->segundo_apellido : null,
-            'primer_nombre'            => !$esNit ? $request->primer_nombre    : null,
-            'segundo_nombre'           => !$esNit ? $request->segundo_nombre   : null,
-            'email'                    => $request->email,
-            'telefono'                 => $request->telefono,
-            'celular'                  => $request->celular,
-            'direccion'                => $request->direccion,
-            'ciudad_id'                => $request->ciudad_id ?: null,
-            'activo'                   => true,
+            'codigo'                    => strtoupper($request->codigo),
+            'tipo_cliente'              => $request->tipo_cliente ?? 'Cliente',
+            'tipo_documento'            => $tipoDoc,
+            'numero_documento'          => $request->numero_documento,
+            'digito_verificacion'       => $request->digito_verificacion ?: null,
+            'razon_social'              => $esNit ? $request->razon_social               : null,
+            'rep_legal_primer_nombre'   => $esNit ? $request->rep_legal_primer_nombre    : null,
+            'rep_legal_segundo_nombre'  => $esNit ? $request->rep_legal_segundo_nombre   : null,
+            'rep_legal_primer_apellido' => $esNit ? $request->rep_legal_primer_apellido  : null,
+            'rep_legal_segundo_apellido'=> $esNit ? $request->rep_legal_segundo_apellido : null,
+            'rep_legal_documento'       => $esNit ? $request->rep_legal_documento        : null,
+            'primer_apellido'           => !$esNit ? $request->primer_apellido  : null,
+            'segundo_apellido'          => !$esNit ? $request->segundo_apellido : null,
+            'primer_nombre'             => !$esNit ? $request->primer_nombre    : null,
+            'segundo_nombre'            => !$esNit ? $request->segundo_nombre   : null,
+            'email'                     => $request->email,
+            'telefono'                  => $request->telefono,
+            'celular'                   => $request->celular,
+            'direccion'                 => $request->direccion,
+            'ciudad_id'                 => $request->ciudad_id ?: null,
         ]);
 
         return redirect()->route('clientes.index')
@@ -198,10 +205,14 @@ class ClienteController extends Controller
     }
 
     // ─── Eliminación lógica ──────────────────────────────────────
-    public function destroy(Cliente $cliente)
+    public function destroy($id)
     {
+        $cliente = Cliente::where('id', $id)
+                          ->where('activo', true)
+                          ->firstOrFail();
+    
         $cliente->update(['activo' => false]);
-
+    
         return redirect()->route('clientes.index')
                          ->with('success', 'Cliente desactivado correctamente.');
     }

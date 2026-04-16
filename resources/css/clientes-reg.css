@@ -90,3 +90,18 @@
     .dv-row { display: flex; gap: 10px; align-items: flex-start; }
     .dv-row .field:first-child { flex: 2; }
     .dv-row .field:last-child  { flex: 1; }
+
+    .badge-estado {
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+    .badge-activo {
+      background: #F0FDF4;
+      color: #15803D;
+    }
+    .badge-inactivo {
+      background: #FEF2F2;
+      color: #DC2626;
+    }

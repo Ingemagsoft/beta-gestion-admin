@@ -36,7 +36,7 @@
     <div class="cards">
       <div class="card card-accent">
         <div class="card-label">CLIENTES</div>
-        <div class="card-value">0</div>
+        <div class="card-value">{{ $totalClientes }}</div>
         <div class="card-sub">registrados en el sistema</div>
       </div>
       <div class="card">

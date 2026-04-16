@@ -15,7 +15,8 @@ Route::middleware(['auth.tenant'])->group(function () {
 
     // ─── Dashboard ───────────────────────────────────────────────
     Route::get('/dashboard', function () {
-        return view('dashboard');
+        $totalClientes = \App\Models\Cliente::where('activo', true)->count();
+        return view('dashboard', compact('totalClientes'));
     })->name('dashboard');
 
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
