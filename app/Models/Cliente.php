@@ -50,10 +50,10 @@ class Cliente extends Model
             return $this->razon_social;
         }
 
-        return trim(
+        return trim(preg_replace('/\s+/', ' ',
             "{$this->primer_nombre} {$this->segundo_nombre} " .
             "{$this->primer_apellido} {$this->segundo_apellido}"
-        );
+        ));
     }
 
     // Accessor — documento formateado para mostrar
