@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController; // --- IGNORE ---
 use App\Http\Controllers\ClienteController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PdfController;
 
 // ─── Rutas públicas (sin autenticación) ─────────────────────
 Route::get('/',      [AuthController::class, 'showLogin'])->name('login');
@@ -19,14 +20,17 @@ Route::middleware(['auth.tenant'])->group(function () {
         return view('dashboard', compact('totalClientes'));
     })->name('dashboard');
 
-    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout'); 
+    
 
     // ─── Módulo Clientes ─────────────────────────────────────────
     Route::get('/clientes',             [ClienteController::class, 'index']) ->name('clientes.index');
     Route::get('/clientes/nuevo',       [ClienteController::class, 'create'])->name('clientes.create');
+    Route::get('/clientes/pdf',         [PdfController::class, 'clientes'])->name('clientes.pdf');  // Ruta para controlador PDF
     Route::post('/clientes',            [ClienteController::class, 'store']) ->name('clientes.store');
     Route::get('/clientes/{cliente}/editar', [ClienteController::class, 'edit'])  ->name('clientes.edit');
     Route::put('/clientes/{cliente}',        [ClienteController::class, 'update'])->name('clientes.update');
     Route::delete('/clientes/{cliente}',     [ClienteController::class, 'destroy'])->name('clientes.destroy');
 
+    
 });

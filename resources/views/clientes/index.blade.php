@@ -35,9 +35,17 @@
           <a href="{{ route('dashboard') }}">Dashboard</a> / Clientes
         </div>
       </div>
-      <a href="{{ route('clientes.create') }}" class="btn-nuevo">
-        + Nuevo cliente
-      </a>
+      <div style="display:flex; gap:10px; align-items:center;">
+        <a href="{{ route('clientes.pdf', ['busqueda' => $busqueda]) }}"
+           target="_blank"
+           class="btn-nuevo"
+           style="background:#1E3A5F; color:#ffffff;">
+          ↓ Descargar PDF
+        </a>
+        <a href="{{ route('clientes.create') }}" class="btn-nuevo">
+          + Nuevo cliente
+        </a>
+      </div>
     </div>
 
     {{-- MENSAJE DE ÉXITO --}}
