@@ -12,7 +12,7 @@ class User extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable;
 
     // ─── Conexión al tenant activo ──────────────────────────────
-    protected $connection = 'tenant';
+    protected $connection = 'tenant'; // asegura que este modelo use la conexión tenant
     protected $table = 'users';
 
     /**

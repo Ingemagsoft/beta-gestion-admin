@@ -18,13 +18,8 @@ class AuthController extends Controller
         if (session()->has('user_id')) {
             return redirect()->route('dashboard');
         }
-
-        // Cargar lista de empresas activas para el selector
-        $empresas = Tenant::where('activo', true)
-                          ->orderBy('nombre')
-                          ->get(['id', 'nombre']);
-
-        return view('auth.login', compact('empresas'));
+    
+        return view('auth.login');
     }
 
     // ─── Procesar el login ───────────────────────────────────────
@@ -32,12 +27,12 @@ class AuthController extends Controller
     {
         // 1. Validar los datos del formulario
         $request->validate([
-            'tenant_id' => 'required|exists:tenants,id',
+            'codigo'   => 'required|string|max:20',
             'email'     => 'required|email',
             'password'  => 'required|min:6',
         ], [
-            'tenant_id.required' => 'Debes seleccionar una empresa.',
-            'tenant_id.exists'   => 'La empresa seleccionada no existe.',
+            'codigo.required' => 'El código de empresa es obligatorio.',
+            'codigo.string'   => 'El código de empresa no es válido.',
             'email.required'     => 'El correo es obligatorio.',
             'email.email'        => 'El correo no tiene un formato válido.',
             'password.required'  => 'La contraseña es obligatoria.',
@@ -45,13 +40,13 @@ class AuthController extends Controller
         ]);
 
         // 2. Buscar la empresa en la BD central
-        $tenant = Tenant::where('id', $request->tenant_id)
+        $tenant = Tenant::where('codigo', strtoupper(trim($request->codigo)))
                         ->where('activo', true)
                         ->first();
 
         if (!$tenant) {
             return back()->withErrors([
-                'empresa' => 'Empresa no encontrada o inactiva.'
+                'login' => 'Credenciales incorrectas'
             ])->withInput();
         }
 
@@ -74,12 +69,13 @@ class AuthController extends Controller
         if (!$usuario || !Hash::check($request->password, $usuario->password)) {
             return back()->withErrors([
                 'email' => 'Correo o contraseña incorrectos.'
-            ])->withInput($request->only('email', 'tenant_id'));
+            ])->withInput($request->only('email', 'codigo'));
         }
 
         // 5. Guardar sesión del tenant y usuario
         session([
             'tenant_id'     => $tenant->id,
+            'tenant_codigo' => $tenant->codigo,
             'tenant_db'     => $tenant->db_name,
             'tenant_nombre' => $tenant->nombre,
             'user_id'       => $usuario->id,

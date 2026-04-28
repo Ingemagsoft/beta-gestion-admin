@@ -44,6 +44,7 @@ return [
             'transaction_mode' => 'DEFERRED',
         ],
 
+        // ─── Conexión central para autenticación y gestión de tenants ───────────────────────────
         'mysql' => [
             'driver'            => 'mysql',
             'host'              => env('DB_HOST', '127.0.0.1'),
@@ -64,11 +65,11 @@ return [
         ],
 
         // ─── Conexión dinámica por tenant ───────────────────────────
-        'tenant' => [
+        'tenant' => [ // Esta conexión se configurará dinámicamente en tiempo de ejecución
             'driver'            => 'mysql',
             'host'              => env('DB_HOST', '127.0.0.1'),
             'port'              => env('DB_PORT', '3306'),
-            'database'          => '',
+            'database'          => '', // Este valor se establecerá dinámicamente en tiempo de ejecución
             'username'          => env('DB_USERNAME', 'root'),
             'password'          => env('DB_PASSWORD', ''),
             'unix_socket'       => env('DB_SOCKET', ''),

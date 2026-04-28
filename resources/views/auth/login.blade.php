@@ -71,19 +71,18 @@
       <form method="POST" action="{{ route('login.post') }}">
         @csrf
 
-        {{-- Selector de empresa --}}
+        {{-- Código de empresa --}}
         <div class="field">
-          <label>EMPRESA</label>
-          <select name="tenant_id" class="{{ $errors->has('tenant_id') ? 'error' : '' }}">
-            <option value="">Seleccionar empresa...</option>
-            @foreach($empresas as $empresa)
-              <option value="{{ $empresa->id }}"
-                {{ old('tenant_id') == $empresa->id ? 'selected' : '' }}>
-                {{ $empresa->nombre }}
-              </option>
-            @endforeach
-          </select>
-          @error('tenant_id')
+          <label>CÓDIGO DE EMPRESA</label>
+          <input type="text"
+                 name="codigo"
+                 value="{{ strtoupper(old('codigo')) }}"
+                 placeholder="Ej: DEMO"
+                 maxlength="20"
+                 autocomplete="off"
+                 style="text-transform: uppercase;"
+                 class="{{ $errors->has('codigo') ? 'error' : '' }}">
+          @error('codigo')
             <span class="error-msg">{{ $message }}</span>
           @enderror
         </div>

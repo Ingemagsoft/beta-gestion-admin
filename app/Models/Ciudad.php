@@ -6,10 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Ciudad extends Model
 {
-    protected $connection = 'tenant';
+    protected $connection = 'tenant'; // asegura que este modelo use la conexión tenant
     protected $table = 'ciudades'; // Especificar el nombre de la tabla si no sigue la convención
 
-    protected $fillable = [
+    protected $fillable = [  // Campos que se pueden asignar masivamente, útil para crear o actualizar registros
         'nombre',
         'departamento',
         'activo',
