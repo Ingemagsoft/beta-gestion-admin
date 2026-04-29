@@ -1,0 +1,20 @@
+[33m7d15998[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m feat: bloque 1 panel admin — login, middleware y dashboard central
+[33m40640eb[m test: stage 1 completado — pruebas de estabilidad multitenant
+[33m596c84f[m feat: login con código de empresa + preparación multitenant
+[33m4feb183[m feat: Beta 4 completa — generación PDF listado clientes con DomPDF, botón descarga
+[33mafd4780[m Style: Cambio de posicion de nombres y apellidos en clientes
+[33me76ad38[m Feat: Beta 3 completa - API REST CRUD clientes, ciudades, auth con token
+[33mefaabee[m feat: API auth completa — login, me, logout con TenantApiMiddleware
+[33mbe29713[m Feat: Beta 3 Inicio - Sanctum instalado, User model actualizado, TenantApiMiddleware
+[33m346fa2a[m feat: módulo de clientes completo — CRUD, búsqueda, edición, desactivar y contador dashboard
+[33m81d8cb8[m Code: Actualizacion del Controller cliente para aceptar rep legal nuevos campos
+[33mc308d12[m Code: Cambio en el representante legal, 4 campos nuevos, update de DB y Modelo cliente
+[33ma5ed4ce[m Feat: Creacion index clientes, clientes.css - redireccion desde Dashboard, Update vite.
+[33m434dd59[m Feat: Creacion Modelos: Cliente-Ciudad, creacion controlador clientes, actualizacion de rutas
+[33mfc12174[m Feat: Creacion tabla clientes tenant_demo
+[33m1b943a2[m Faid: Creacion tabla clientes en tenant_demo
+[33m035b92a[m Faid: tenant_demo actualizada, Style: dashboard.css separado, logos en login y dashboard
+[33md26291a[m feat: CSS para login, carga de img para trabajar
+[33mc8eb178[m feat: Middleware, AuthController, modelo Tenant y vista login
+[33m99577de[m feat: Autenticacion: Breeze+estructura multitenant
+[33m7dcc288[m Estructura base del proyecto laravel 11
