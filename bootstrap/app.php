@@ -15,6 +15,7 @@ return Application::configure(basePath: dirname(__DIR__))
     $middleware->alias([
         'auth.tenant' => \App\Http\Middleware\TenantMiddleware::class, // Middleware para rutas web
         'auth.tenant.api' => \App\Http\Middleware\TenantApiMiddleware::class,  // Middleware específico para rutas API
+        'auth.admin' => \App\Http\Middleware\AdminMiddleware::class, // Middleware para rutas de administración
     ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {

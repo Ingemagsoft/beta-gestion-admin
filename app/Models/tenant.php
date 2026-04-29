@@ -20,4 +20,14 @@ class Tenant extends Model
     protected $casts = [
         'activo' => 'boolean',
     ];
+
+// ─── Estadísticas para el dashboard admin ───────────────────
+    public static function estadisticasDashboard(): array
+    {
+        return [
+            'total'     => self::count(),
+            'activas'   => self::where('activo', true)->count(),
+            'inactivas' => self::where('activo', false)->count(),
+        ];
+    }
 }

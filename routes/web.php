@@ -32,5 +32,18 @@ Route::middleware(['auth.tenant'])->group(function () {
     Route::put('/clientes/{cliente}',        [ClienteController::class, 'update'])->name('clientes.update');
     Route::delete('/clientes/{cliente}',     [ClienteController::class, 'destroy'])->name('clientes.destroy');
 
-    
+});
+
+    // ═══════════════════════════════════════════════════════
+    //  PANEL DE ADMINISTRACIÓN CENTRAL — Solo equipo IMS
+    // ═══════════════════════════════════════════════════════
+Route::prefix('admin')->name('admin.')->group(function () {
+    // Rutas públicas del admin (sin middleware)
+    Route::get('/login',  [App\Http\Controllers\Admin\AdminAuthController::class, 'showLogin'])->name('login');
+    Route::post('/login', [App\Http\Controllers\Admin\AdminAuthController::class, 'login'])->name('login.post');
+    // Rutas protegidas (requieren sesión de admin)
+    Route::middleware('auth.admin')->group(function () {
+        Route::get('/dashboard', [App\Http\Controllers\Admin\AdminDashboardController::class, 'index'])->name('dashboard');
+        Route::post('/logout',   [App\Http\Controllers\Admin\AdminAuthController::class, 'logout'])->name('logout');
+    });
 });
