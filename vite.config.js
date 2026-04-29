@@ -10,7 +10,8 @@ export default defineConfig({
                 'resources/css/dashboard.css',
                 'resources/css/clientes.css',
                 'resources/css/admin-login.css',
-                'resources/css/admin.css',
+                'resources/css/admin.css',                
+                'resources/css/admin-empresas.css',                
                 'resources/css/clientes-reg.css',
                 'resources/js/app.js'
                 ],

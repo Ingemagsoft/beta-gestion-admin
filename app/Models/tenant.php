@@ -32,17 +32,18 @@ class Tenant extends Model
     }
 
     // ─── Listar todas las empresas ordenadas ─────────────────────
-    public static function listarTodas()
+    public static function listarTodas() 
+    
     {
         return self::orderBy('nombre')->get();
     }
-    
+
     // ─── Buscar empresa por ID ────────────────────────────────────
     public static function buscarPorId(int $id): self
     {
         return self::findOrFail($id);
     }
-    
+
     // ─── Registrar nueva empresa con defaults de conexión ────────
     public static function registrarNueva(array $datos): self
     {
@@ -58,7 +59,7 @@ class Tenant extends Model
             'activo'      => true,
         ]);
     }
-    
+
     // ─── Actualizar nombre y NIT ──────────────────────────────────
     public static function actualizarDatos(int $id, array $datos): void
     {
@@ -67,7 +68,7 @@ class Tenant extends Model
             'nit'    => trim($datos['nit']),
         ]);
     }
-    
+
     // ─── Alternar estado activo/inactivo ─────────────────────────
     public static function toggleActivo(int $id): void
     {
