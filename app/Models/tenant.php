@@ -3,10 +3,14 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\DB;
 
 class Tenant extends Model
 {
     protected $fillable = [
+        'codigo',
         'nombre',
         'nit',
         'db_name',
@@ -33,7 +37,7 @@ class Tenant extends Model
 
     // ─── Listar todas las empresas ordenadas ─────────────────────
     public static function listarTodas() 
-    
+
     {
         return self::orderBy('nombre')->get();
     }
@@ -74,6 +78,32 @@ class Tenant extends Model
     {
         $tenant = self::findOrFail($id);
         $tenant->update(['activo' => !$tenant->activo]);
+    }
+
+    // ─── Crear BD y correr migraciones del tenant ────────────────
+    public static function crearBaseDeDatos(self $tenant): void
+    {
+        // Crear la BD
+        DB::statement("CREATE DATABASE `{$tenant->db_name}` 
+                       CHARACTER SET utf8mb4 
+                       COLLATE utf8mb4_unicode_ci");
+
+        // Apuntar la conexión tenant a la nueva BD
+        Config::set('database.connections.tenant.database', $tenant->db_name);
+        Config::set('database.connections.tenant.host',     $tenant->db_host);
+        Config::set('database.connections.tenant.port',     $tenant->db_port);
+        Config::set('database.connections.tenant.username', $tenant->db_user);
+        Config::set('database.connections.tenant.password', $tenant->db_password);
+
+        DB::purge('tenant');
+        DB::reconnect('tenant');
+
+        // Correr migraciones sobre la nueva BD
+        Artisan::call('migrate', [
+            '--database' => 'tenant',
+            '--path'     => 'database/migrations/tenant',
+            '--force'    => true,
+        ]);
     }
 }
 
