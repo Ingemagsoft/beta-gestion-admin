@@ -6,6 +6,7 @@ use App\Http\Controllers\ClienteController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PdfController;
 use App\Http\Controllers\Admin\AdminEmpresaController;
+use App\Http\Controllers\Admin\AdminUsuarioController;
 
 // ─── Rutas públicas (sin autenticación) ─────────────────────
 Route::get('/',      [AuthController::class, 'showLogin'])->name('login');
@@ -50,6 +51,15 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
     // ── CRUD de empresas ──
     Route::resource('empresas', AdminEmpresaController::class)->except(['show', 'destroy']);
-    Route::patch('empresas/{id}/toggle', [AdminEmpresaController::class, 'toggle'])->name('empresas.toggle');
+    Route::patch('empresas/{id}/toggle', [AdminEmpresaController::class, 'toggle'])->name('empresas.toggle'); // Ruta para activar/desactivar empresa
+
+    // ── Usuarios por tenant ──
+    Route::prefix('empresas/{empresa_id}/usuarios')
+         ->name('usuarios.')
+         ->group(function () {
+             Route::get('/',       [AdminUsuarioController::class, 'index'])->name('index');
+             Route::get('/create', [AdminUsuarioController::class, 'create'])->name('create');
+             Route::post('/',      [AdminUsuarioController::class, 'store'])->name('store');
+         });
     });
 });

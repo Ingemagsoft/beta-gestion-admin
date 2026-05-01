@@ -210,3 +210,24 @@
     font-size: 14px;
     margin-bottom: 20px;
 }
+
+/* ── Usuarios ── */
+
+.btn-usuarios {
+    padding: 5px 12px;
+    background: transparent;
+    border: 1px solid #3a78a8;
+    color: #3a78a8;
+    border-radius: 4px;
+    font-size: 12px;
+    text-decoration: none;
+    transition: all 0.2s;
+}
+
+.btn-usuarios:hover { background: #3a78a8; color: #fff; }
+
+.empresa-meta {
+    font-size: 13px;
+    color: #888;
+    margin-top: 4px;
+}

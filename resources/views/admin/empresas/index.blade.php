@@ -59,9 +59,10 @@
                             </span>
                         </td>
                         <td class="acciones-col">
+                            <a href="{{ route('admin.usuarios.index', $empresa->id) }}" class="btn-usuarios">Usuarios</a>
                             <a href="{{ route('admin.empresas.edit', $empresa->id) }}" class="btn-editar">Editar</a>
 
-                            <form method="POST"
+                            <form method="POST"   
                                   action="{{ route('admin.empresas.toggle', $empresa->id) }}"
                                   style="display:inline;">
                                 @csrf
