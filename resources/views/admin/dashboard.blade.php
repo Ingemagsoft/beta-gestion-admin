@@ -43,7 +43,7 @@
 
         <div class="acciones">
             <h2 class="section-title">Gestión de empresas</h2>
-            <a href="#" class="btn-accion">+ Nueva empresa</a>
+            <a href="{{ route('admin.empresas.index') }}" class="btn-accion">Gestionar empresas</a>
         </div>
 
     </main>
